@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="jp.techacademy.kasumi.watanabe.autoslideshowapp.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="800px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/prev_button"
+        android:layout_width="107dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:onClick="previous"
+        android:text="戻る" />
+
+    <Button
+        android:id="@+id/run_button"
+        android:layout_width="107dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:onClick="getContentsInfo"
+        android:text="再生" />
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="107dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:onClick="next"
+        android:text="進む" />
+
+</RelativeLayout>
