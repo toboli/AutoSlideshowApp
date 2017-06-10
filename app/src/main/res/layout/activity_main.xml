@@ -31,8 +31,8 @@
         android:layout_width="107dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:onClick="getContentsInfo"
-        android:text="再生" />
+        android:onClick="run"
+        android:text="再生/停止" />
 
     <Button
         android:id="@+id/next_button"
