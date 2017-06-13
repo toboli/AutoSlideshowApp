@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button next_button = (Button) findViewById(R.id.next_button);
         next_button.setOnClickListener(this);
 
+
+
+
     }
 
 
@@ -189,6 +192,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
+
+
         /*戻るをおしたとき*/
         if(v.getId()==R.id.prev_button){
             previous();
@@ -196,7 +202,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else if(v.getId()==R.id.next_button){
             next();
             /*再生・停止をおしたとき*/
-        }else{
+        }else {
+            Log.i("debug", "Timer");
+            if (mTimer == null) {
+
             mTimer = new Timer();
             mTimer.schedule(new TimerTask() {
                 @Override
@@ -206,17 +215,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
-                            Long id = cursor.getLong(fieldIndex);
-                            Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+                            Log.i("debug", "run");
 
-                            ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
-                            imageVIew.setImageURI(imageUri);
+                            if (mTimer != null) {
+                                Log.i("debug", "timer_null");
+                                Button run_button = (Button) findViewById(R.id.run_button);
+                                run_button.setText("再生");
+
+                                if (cursor.moveToNext()) {
+                                    int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
+                                    Long id = cursor.getLong(fieldIndex);
+                                    Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+
+                                    ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
+                                    imageVIew.setImageURI(imageUri);
+
+                                } else if (cursor.moveToFirst()) {
+                                    int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
+                                    Long id = cursor.getLong(fieldIndex);
+                                    Uri imageUri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+
+                                    ImageView imageVIew = (ImageView) findViewById(R.id.imageView);
+                                    imageVIew.setImageURI(imageUri);
+                                }
+                            }
+
 
                         }
                     });
                 }
             }, 100, 2000/*2秒ごとだから*/);
+
+        }else {
+                Log.i("debug", "not null");
+                Button run_button = (Button) findViewById(R.id.run_button);
+                run_button.setText("停止");
+
+                mTimer.cancel();
+                mTimer = null;
+            }
 
         }
 
