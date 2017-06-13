@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             if (mTimer != null) {
                                 Log.i("debug", "timer_null");
                                 Button run_button = (Button) findViewById(R.id.run_button);
-                                run_button.setText("再生");
+                                run_button.setText("停止");
 
                                 if (cursor.moveToNext()) {
                                     int fieldIndex = cursor.getColumnIndex(MediaStore.Images.Media._ID);
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else {
                 Log.i("debug", "not null");
                 Button run_button = (Button) findViewById(R.id.run_button);
-                run_button.setText("停止");
+                run_button.setText("再生");
 
                 mTimer.cancel();
                 mTimer = null;
